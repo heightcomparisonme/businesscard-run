@@ -51,7 +51,7 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
             </div>
             {/* Right content */}
             <div className="w-2/3 p-8 flex flex-col justify-center relative">
-              <h1 className="text-3xl font-bold text-slate-900 mb-1 leading-tight">{fullName}</h1>
+              <div className="text-3xl font-bold text-slate-900 mb-1 leading-tight">{fullName}</div>
               <p className="text-lg font-medium mb-6 uppercase tracking-wide" style={{ color: primaryColor }}>{jobTitle}</p>
               
               <div className="space-y-2 text-sm text-slate-600">
@@ -96,7 +96,7 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
              <div className="absolute top-0 left-0 w-full h-2" style={{ backgroundColor: primaryColor }}></div>
              
              <div>
-               <h1 className="text-3xl font-light tracking-tight mb-2">{fullName}</h1>
+               <div className="text-3xl font-light tracking-tight mb-2">{fullName}</div>
                <p className="text-sm uppercase tracking-widest font-semibold text-slate-400">{jobTitle}</p>
              </div>
 
@@ -128,7 +128,7 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
             </div>
 
             <div className="relative z-10">
-              <h1 className="text-4xl font-serif font-bold mb-2">{fullName}</h1>
+              <div className="text-4xl font-serif font-bold mb-2">{fullName}</div>
               <p className="text-lg opacity-90 mb-6 font-light">{jobTitle}</p>
               
               <div className="w-16 h-1 bg-white opacity-50 mx-auto mb-6 rounded-full"></div>
@@ -154,9 +154,9 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
           <div className="w-full h-full bg-slate-900 text-green-400 font-mono p-6 shadow-2xl flex flex-col relative border-2 border-slate-700">
             <div className="flex justify-between items-start mb-8">
                 <div>
-                  <h1 className="text-2xl font-bold text-white mb-1">
+                  <div className="text-2xl font-bold text-white mb-1">
                     <span style={{color: primaryColor}}>&gt;</span> {fullName}<span className="animate-pulse">_</span>
-                  </h1>
+                  </div>
                   <p className="text-xs text-slate-400 uppercase">{jobTitle}</p>
                 </div>
                 <div className="text-right">
@@ -206,7 +206,7 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
                 <div className="text-amber-500 mb-4 text-2xl">
                    <i className="fas fa-crown"></i>
                 </div>
-                <h1 className="text-4xl font-serif tracking-wide text-white mb-2">{fullName}</h1>
+                <div className="text-4xl font-serif tracking-wide text-white mb-2">{fullName}</div>
                 <p className="text-xs uppercase tracking-[0.3em] text-amber-500 mb-8">{jobTitle}</p>
 
                 <div className="space-y-2 text-sm font-light font-serif opacity-90">
@@ -236,10 +236,10 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
              <div className="absolute -left-10 bottom-10 w-32 h-32 rounded-full bg-black opacity-5"></div>
 
              <div className="relative z-10 mt-4">
-               <h1 className="text-5xl font-extrabold text-white tracking-tight leading-none mb-2 drop-shadow-sm">
+               <div className="text-5xl font-extrabold text-white tracking-tight leading-none mb-2 drop-shadow-sm">
                  {primaryName}<br/>
                  {boldLineTwo}
-               </h1>
+               </div>
                <div className="inline-block bg-white text-slate-900 px-3 py-1 text-sm font-bold uppercase tracking-wider mt-2 transform -skew-x-6">
                  {displayJobTitle}
                </div>
@@ -267,7 +267,7 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
              ></div>
              
              <div className="relative z-10 w-1/2 p-8 flex flex-col justify-center text-slate-800">
-                <h1 className="text-3xl font-bold mb-1">{fullName}</h1>
+               <div className="text-3xl font-bold mb-1">{fullName}</div>
                 <p className="text-sm font-semibold uppercase tracking-wider mb-6" style={{ color: primaryColor }}>{jobTitle}</p>
                 
                 <div className="space-y-3 text-sm">
@@ -310,7 +310,7 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
               <div className="flex items-start justify-between gap-6">
                 <div>
                   <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Profile</p>
-                  <h1 className="text-3xl font-semibold mt-1 mb-1">{displayFullName}</h1>
+                  <div className="text-3xl font-semibold mt-1 mb-1">{displayFullName}</div>
                   <p className="text-sm font-semibold" style={{ color: primaryColor }}>{displayJobTitle}</p>
                 </div>
                 <div className="text-right text-xs text-slate-500 space-y-1">
@@ -360,7 +360,7 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
               {initials}
             </div>
             <div className="flex flex-col gap-1">
-              <h1 className="text-3xl font-bold tracking-tight">{displayFullName}</h1>
+              <div className="text-3xl font-bold tracking-tight">{displayFullName}</div>
               <p className="text-sm uppercase tracking-[0.2em] font-semibold" style={{ color: primaryColor }}>{displayJobTitle}</p>
               <div className="text-sm text-slate-600 space-y-1 mt-2">
                 {companyName && <div className="font-semibold text-slate-800">{companyName}</div>}
@@ -385,7 +385,7 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
             <div className="relative z-10 flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Neon Identity</p>
-                <h1 className="text-3xl font-bold mt-2 mb-1">{displayFullName}</h1>
+                <div className="text-3xl font-bold mt-2 mb-1">{displayFullName}</div>
                 <p className="text-sm font-semibold" style={{ color: primaryColor }}>{displayJobTitle}</p>
               </div>
               <div className="text-right text-xs text-slate-400 space-y-1">
@@ -435,7 +435,7 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
             <div className="relative z-10 h-full p-8 flex flex-col justify-between">
               <div className="flex items-start justify-between gap-6">
                 <div>
-                  <h1 className="text-3xl font-bold mb-1">{displayFullName}</h1>
+                  <div className="text-3xl font-bold mb-1">{displayFullName}</div>
                   <p className="text-sm uppercase tracking-[0.2em] font-semibold" style={{ color: primaryColor }}>{displayJobTitle}</p>
                 </div>
                 <div className="flex flex-col items-end gap-2">
@@ -484,7 +484,7 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
           <div className="w-full h-full p-8 bg-[#fdfbf7] text-slate-900 shadow-2xl flex flex-col items-center justify-center border-t-8 text-center"
                style={{ borderColor: primaryColor }}
           >
-             <h1 className="text-3xl font-serif font-bold text-slate-800 mb-2">{fullName}</h1>
+             <div className="text-3xl font-serif font-bold text-slate-800 mb-2">{fullName}</div>
              <p className="text-sm font-sans uppercase tracking-widest text-slate-500 mb-6">{jobTitle}</p>
              
              <div className="w-full border-t border-slate-200 my-2"></div>

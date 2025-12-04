@@ -19,7 +19,7 @@ const DEFAULT_SOCIAL_IMAGE = 'https://github.com/user-attachments/assets/0aa6701
 
 const SEO_CONFIG = {
   title: 'GemCard | Free AI Business Card Generator & Designer',
-  description: 'Design professional business cards with AI-powered taglines, smart themes, and print-ready PNG downloads in seconds.',
+  description: 'Create print-ready business cards in seconds with AI taglines, smart themes, and instant PNG downloads—no sign-up, no design skills required.',
   siteName: 'GemCard',
   socialImage: import.meta.env.VITE_SOCIAL_IMAGE || DEFAULT_SOCIAL_IMAGE,
 };
