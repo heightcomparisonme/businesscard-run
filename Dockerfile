@@ -1,0 +1,93 @@
+# syntax=docker/dockerfile:1
+# Use Debian-based Node.js for better Puppeteer support (Alpine has issues with Chromium)
+FROM node:20-slim AS base
+
+# Install dependencies only when needed
+FROM base AS deps
+WORKDIR /app
+
+# Install pnpm globally first
+RUN npm install -g pnpm
+
+# Copy package files and config
+COPY package.json pnpm-lock.yaml* .npmrc* ./
+# Copy config files needed for fumadocs-mdx postinstall
+COPY source.config.ts ./
+COPY content ./content
+
+# Install ALL dependencies (including devDependencies) for build stage
+# fumadocs-mdx needs vite during postinstall
+RUN pnpm install --frozen-lockfile --prod=false
+
+# Rebuild the source code only when needed
+FROM base AS builder
+WORKDIR /app
+
+# Install pnpm
+RUN npm install -g pnpm
+
+# Copy dependencies from deps stage
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+# Disable Next.js telemetry
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# Build the application
+RUN DOCKER_BUILD=true pnpm build
+
+# Production image, copy all the files and run next
+FROM base AS runner
+WORKDIR /app
+
+# Install Chromium and dependencies for Puppeteer
+RUN apt-get update && apt-get install -y \
+    chromium \
+    chromium-sandbox \
+    fonts-ipafont-gothic \
+    fonts-wqy-zenhei \
+    fonts-thai-tlwg \
+    fonts-kacst \
+    fonts-freefont-ttf \
+    libxss1 \
+    libxtst6 \
+    libgtk-3-0 \
+    libgbm1 \
+    libnss3 \
+    libasound2 \
+    ca-certificates \
+    --no-install-recommends \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Tell Puppeteer to use system Chromium
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
+
+# Set the correct permission for prerender cache
+RUN mkdir .next
+RUN chown nextjs:nodejs .next
+
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3000
+
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+# server.js is created by next build from the standalone output
+# https://nextjs.org/docs/pages/api-reference/next-config-js/output
+CMD ["node", "server.js"]
