@@ -41,6 +41,7 @@ const CardForm: React.FC<CardFormProps> = ({ data, onChange, onGenerateAI, onMag
             value={designPrompt}
             onChange={(e) => setDesignPrompt(e.target.value)}
             placeholder="Describe your business style..."
+            aria-label="Describe your business style"
             className="flex-grow px-3 py-2 rounded-lg text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
           />
           <button 
@@ -62,10 +63,11 @@ const CardForm: React.FC<CardFormProps> = ({ data, onChange, onGenerateAI, onMag
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-slate-600 mb-1">Full Name</label>
+            <label htmlFor="fullName" className="block text-sm font-medium text-slate-600 mb-1">Full Name</label>
             <input
               type="text"
               name="fullName"
+              id="fullName"
               value={data.fullName}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
@@ -73,10 +75,11 @@ const CardForm: React.FC<CardFormProps> = ({ data, onChange, onGenerateAI, onMag
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-600 mb-1">Job Title</label>
+            <label htmlFor="jobTitle" className="block text-sm font-medium text-slate-600 mb-1">Job Title</label>
             <input
               type="text"
               name="jobTitle"
+              id="jobTitle"
               value={data.jobTitle}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
@@ -93,10 +96,11 @@ const CardForm: React.FC<CardFormProps> = ({ data, onChange, onGenerateAI, onMag
         </h3>
         <div className="grid grid-cols-1 gap-4">
           <div>
-            <label className="block text-sm font-medium text-slate-600 mb-1">Company Name</label>
+            <label htmlFor="companyName" className="block text-sm font-medium text-slate-600 mb-1">Company Name</label>
             <input
               type="text"
               name="companyName"
+              id="companyName"
               value={data.companyName}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
@@ -113,10 +117,11 @@ const CardForm: React.FC<CardFormProps> = ({ data, onChange, onGenerateAI, onMag
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-slate-600 mb-1">Email</label>
+            <label htmlFor="email" className="block text-sm font-medium text-slate-600 mb-1">Email</label>
             <input
               type="email"
               name="email"
+              id="email"
               value={data.email}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
@@ -124,10 +129,11 @@ const CardForm: React.FC<CardFormProps> = ({ data, onChange, onGenerateAI, onMag
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-600 mb-1">Phone</label>
+            <label htmlFor="phone" className="block text-sm font-medium text-slate-600 mb-1">Phone</label>
             <input
               type="tel"
               name="phone"
+              id="phone"
               value={data.phone}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
@@ -135,10 +141,11 @@ const CardForm: React.FC<CardFormProps> = ({ data, onChange, onGenerateAI, onMag
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-600 mb-1">Website</label>
+            <label htmlFor="website" className="block text-sm font-medium text-slate-600 mb-1">Website</label>
             <input
               type="text"
               name="website"
+              id="website"
               value={data.website}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
@@ -146,10 +153,11 @@ const CardForm: React.FC<CardFormProps> = ({ data, onChange, onGenerateAI, onMag
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-600 mb-1">Address (Optional)</label>
+            <label htmlFor="address" className="block text-sm font-medium text-slate-600 mb-1">Address (Optional)</label>
             <input
               type="text"
               name="address"
+              id="address"
               value={data.address}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
@@ -174,9 +182,10 @@ const CardForm: React.FC<CardFormProps> = ({ data, onChange, onGenerateAI, onMag
           </button>
         </div>
         <div>
-          <label className="block text-xs font-medium text-slate-600 mb-1">Tagline</label>
+          <label htmlFor="tagline" className="block text-xs font-medium text-slate-600 mb-1">Tagline</label>
           <textarea
             name="tagline"
+            id="tagline"
             value={data.tagline}
             onChange={handleChange}
             rows={2}
@@ -193,9 +202,10 @@ const CardForm: React.FC<CardFormProps> = ({ data, onChange, onGenerateAI, onMag
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-slate-600 mb-1">Theme</label>
+            <label htmlFor="theme" className="block text-sm font-medium text-slate-600 mb-1">Theme</label>
             <select
               name="theme"
+              id="theme"
               value={data.theme}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
@@ -208,11 +218,12 @@ const CardForm: React.FC<CardFormProps> = ({ data, onChange, onGenerateAI, onMag
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-600 mb-1">Primary Color</label>
+            <label htmlFor="primaryColor" className="block text-sm font-medium text-slate-600 mb-1">Primary Color</label>
             <div className="flex items-center gap-2">
               <input
                 type="color"
                 name="primaryColor"
+                id="primaryColor"
                 value={data.primaryColor}
                 onChange={handleChange}
                 className="h-10 w-10 p-1 rounded cursor-pointer border border-slate-300"

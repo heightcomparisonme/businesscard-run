@@ -1,5 +1,12 @@
 import React from 'react';
 
+export const FAQ_ITEMS = [
+  { q: "Is this really free?", a: "Yes, 100%. You can generate and download as many cards as you want without paying a dime." },
+  { q: "What format are the downloads?", a: "We export high-resolution PNG files suitable for digital sharing or professional printing (300 DPI equivalent at print size)." },
+  { q: "Do you save my data?", a: "No. All generation happens in your browser and via the API. We do not store your personal contact details on any server." },
+  { q: "Can I use these for print?", a: "Absolutely. The aspect ratio is standard 3.5 x 2 inches. Just send the PNG to your local printer." },
+];
+
 export const HeroSection = ({ onStart }: { onStart: () => void }) => (
   <section className="relative pt-20 pb-32 overflow-hidden bg-white">
     <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-50 pointer-events-none"></div>
@@ -150,12 +157,7 @@ export const FAQSection = () => (
     <div className="max-w-3xl mx-auto px-4">
       <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
       <div className="space-y-4">
-        {[
-          { q: "Is this really free?", a: "Yes, 100%. You can generate and download as many cards as you want without paying a dime." },
-          { q: "What format are the downloads?", a: "We export high-resolution PNG files suitable for digital sharing or professional printing (300 DPI equivalent at print size)." },
-          { q: "Do you save my data?", a: "No. All generation happens in your browser and via the API. We do not store your personal contact details on any server." },
-          { q: "Can I use these for print?", a: "Absolutely. The aspect ratio is standard 3.5 x 2 inches. Just send the PNG to your local printer." },
-        ].map((faq, i) => (
+        {FAQ_ITEMS.map((faq, i) => (
           <details key={i} className="group bg-white rounded-xl shadow-sm border border-slate-200">
             <summary className="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-slate-900">
               <span>{faq.q}</span>
