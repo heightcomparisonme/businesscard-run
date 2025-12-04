@@ -76,7 +76,7 @@ export const BenefitsSection = () => (
   <section className="py-24 bg-white">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-slate-900">Why GemCard is Different</h2>
+        <h2 className="text-3xl font-bold text-slate-900">Why businesscard run is Different</h2>
         <p className="text-slate-600 mt-4">We don't just put text on paper. We engineer your professional identity.</p>
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -187,7 +187,7 @@ export const FooterCTA = ({ onStart }: { onStart: () => void }) => (
         Create My Free Card
       </button>
       <p className="mt-8 text-sm text-blue-200 opacity-80">
-        © {new Date().getFullYear()} GemCard Generator. Built with Gemini AI.
+        © {new Date().getFullYear()} businesscard run Generator. Built with Gemini AI.
       </p>
     </div>
   </section>

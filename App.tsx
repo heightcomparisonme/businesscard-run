@@ -18,9 +18,9 @@ import {
 const DEFAULT_SOCIAL_IMAGE = 'https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6';
 
 const SEO_CONFIG = {
-  title: 'GemCard | Free AI Business Card Generator & Designer',
+  title: 'businesscard run | Free AI Business Card Generator & Designer',
   description: 'Create print-ready business cards in seconds with AI taglines, smart themes, and instant PNG downloads—no sign-up, no design skills required.',
-  siteName: 'GemCard',
+  siteName: 'businesscard run',
   socialImage: import.meta.env.VITE_SOCIAL_IMAGE || DEFAULT_SOCIAL_IMAGE,
 };
 
@@ -264,13 +264,13 @@ const App: React.FC = () => {
               type="button"
               className="flex items-center gap-2 cursor-pointer"
               onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
-              aria-label="GemCard home"
+              aria-label="businesscard run home"
             >
               <span className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-sm">
                 <i className="fas fa-id-card" aria-hidden="true"></i>
               </span>
               <span className="text-xl font-bold text-slate-800 tracking-tight">
-                GemCard
+                businesscard run
               </span>
             </button>
             <div className="flex gap-4 items-center">
@@ -288,7 +288,7 @@ const App: React.FC = () => {
                  href="https://github.com" 
                  target="_blank" 
                  rel="noreferrer" 
-                 aria-label="GemCard on GitHub"
+                 aria-label="businesscard run on GitHub"
                  className="text-slate-400 hover:text-slate-600 transition-colors"
                >
                  <i className="fab fa-github text-xl" aria-hidden="true"></i>
