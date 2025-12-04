@@ -72,12 +72,16 @@ export const generateCardDesign = async (
       
       Task:
       1. Select the most appropriate visual THEME from this list:
-         [MODERN, CLASSIC, MINIMALIST, CREATIVE, TECH, ELEGANT, BOLD, GEOMETRIC].
+         [MODERN, CLASSIC, MINIMALIST, CREATIVE, TECH, ELEGANT, BOLD, GEOMETRIC, HORIZON, MONOGRAM, NEON, GRID].
          - ELEGANT: Luxury, high-end, serif fonts.
          - BOLD: High impact, loud, colorful background.
          - GEOMETRIC: Architectural, clean lines, shapes.
          - TECH: Futuristic, coding, digital.
          - CREATIVE: Artistic, unique gradients.
+         - HORIZON: Calm gradients, horizon line, airy.
+         - MONOGRAM: Initial-focused, balanced white space.
+         - NEON: Dark with glow, tech nightlife vibe.
+         - GRID: Blueprint/structured grid background.
          - CLASSIC/MODERN/MINIMALIST: Standard business styles.
       2. Select a PRIMARY COLOR (hex code) that matches the mood of the description.
       3. Generate a catchy TAGLINE.

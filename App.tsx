@@ -2,6 +2,7 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { CardData, CardTheme } from './types';
 import CardForm from './components/CardForm';
 import CardPreview from './components/CardPreview';
+import TemplateGallery, { TemplatePreset } from './components/TemplateGallery';
 import { generateCardContent, generateCardDesign } from './services/geminiService';
 import { 
   HeroSection, 
@@ -204,6 +205,22 @@ const App: React.FC = () => {
     }
   };
 
+  const handleTemplateSelect = (preset: TemplatePreset) => {
+    setCardData((prev) => ({
+      ...prev,
+      theme: preset.id,
+      primaryColor: preset.primaryColor,
+      fullName: prev.fullName || preset.sample?.fullName || '',
+      jobTitle: prev.jobTitle || preset.sample?.jobTitle || '',
+      companyName: prev.companyName || preset.sample?.companyName || '',
+      email: prev.email || preset.sample?.email || '',
+      phone: prev.phone || preset.sample?.phone || '',
+      website: prev.website || preset.sample?.website || '',
+      address: prev.address || preset.sample?.address || '',
+      tagline: prev.tagline || preset.sample?.tagline || '',
+    }));
+  };
+
   const handleDownload = async () => {
     if (!cardRef.current || !window.html2canvas) return;
     
@@ -313,7 +330,7 @@ const App: React.FC = () => {
               </div>
 
               {/* Right Column: Preview */}
-              <div className="lg:col-span-7 xl:col-span-8 flex flex-col">
+              <div className="lg:col-span-7 xl:col-span-8 flex flex-col gap-6">
                 <div className="lg:sticky lg:top-24 space-y-6">
                   <div className="bg-slate-200/50 rounded-2xl border-2 border-dashed border-slate-300 p-8 flex items-center justify-center min-h-[400px] relative group overflow-hidden">
                      <div className="absolute inset-0 bg-grid-slate-200 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] pointer-events-none" aria-hidden="true"></div>
@@ -354,6 +371,11 @@ const App: React.FC = () => {
                      </button>
                   </div>
                 </div>
+
+                <TemplateGallery 
+                  selectedTheme={cardData.theme} 
+                  onSelect={handleTemplateSelect} 
+                />
               </div>
             </div>
           </div>

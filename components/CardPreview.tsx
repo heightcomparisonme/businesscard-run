@@ -19,6 +19,21 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
     primaryColor,
   } = data;
 
+  const displayFullName = fullName || 'Your Name';
+  const displayJobTitle = jobTitle || 'Title';
+  const initials =
+    (fullName || companyName || 'GC')
+      .split(' ')
+      .filter(Boolean)
+      .map((part) => part.charAt(0))
+      .join('')
+      .slice(0, 2)
+      .toUpperCase() || 'GC';
+  const nameParts = displayFullName.trim().split(/\s+/).filter(Boolean);
+  const primaryName = nameParts[0] || displayFullName;
+  const secondaryName = nameParts.slice(1).join(' ');
+  const boldLineTwo = secondaryName || (nameParts.length ? '' : 'Name');
+
   // Render logic based on theme
   const renderCardContent = () => {
     switch (theme) {
@@ -222,11 +237,11 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
 
              <div className="relative z-10 mt-4">
                <h1 className="text-5xl font-extrabold text-white tracking-tight leading-none mb-2 drop-shadow-sm">
-                 {fullName.split(' ')[0]}<br/>
-                 {fullName.split(' ').slice(1).join(' ')}
+                 {primaryName}<br/>
+                 {boldLineTwo}
                </h1>
                <div className="inline-block bg-white text-slate-900 px-3 py-1 text-sm font-bold uppercase tracking-wider mt-2 transform -skew-x-6">
-                 {jobTitle}
+                 {displayJobTitle}
                </div>
              </div>
 
@@ -274,7 +289,192 @@ const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ data }, ref)
                      {tagline}
                    </div>
                 )}
-             </div>
+            </div>
+          </div>
+        );
+
+      case CardTheme.HORIZON:
+        return (
+          <div className="w-full h-full bg-white text-slate-900 shadow-2xl relative overflow-hidden">
+            <div
+              className="absolute inset-0"
+              style={{ background: `linear-gradient(180deg, ${primaryColor}22 0%, #ffffff 55%, #e2e8f0 100%)` }}
+              aria-hidden="true"
+            ></div>
+            <div
+              className="absolute -left-16 top-10 w-52 h-52 rounded-full opacity-20 blur-2xl"
+              style={{ backgroundColor: primaryColor }}
+              aria-hidden="true"
+            ></div>
+            <div className="relative z-10 h-full flex flex-col p-8">
+              <div className="flex items-start justify-between gap-6">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Profile</p>
+                  <h1 className="text-3xl font-semibold mt-1 mb-1">{displayFullName}</h1>
+                  <p className="text-sm font-semibold" style={{ color: primaryColor }}>{displayJobTitle}</p>
+                </div>
+                <div className="text-right text-xs text-slate-500 space-y-1">
+                  {companyName && <div className="font-semibold text-slate-700">{companyName}</div>}
+                  {website && <div>{website}</div>}
+                </div>
+              </div>
+              <div className="mt-auto pt-6 border-t border-slate-200">
+                {tagline ? (
+                  <p className="italic text-sm text-slate-600 max-w-[360px]">{tagline}</p>
+                ) : (
+                  <p className="text-sm text-slate-400">Add a short promise that sits on the horizon of your work.</p>
+                )}
+                <div className="grid grid-cols-2 gap-3 text-xs text-slate-600 mt-4">
+                  {email && (
+                    <div className="flex items-center gap-2">
+                      <i className="fas fa-envelope text-slate-400 w-4 text-center"></i>
+                      <span className="break-all">{email}</span>
+                    </div>
+                  )}
+                  {phone && (
+                    <div className="flex items-center gap-2">
+                      <i className="fas fa-phone text-slate-400 w-4 text-center"></i>
+                      <span>{phone}</span>
+                    </div>
+                  )}
+                  {address && (
+                    <div className="flex items-center gap-2">
+                      <i className="fas fa-map-marker-alt text-slate-400 w-4 text-center"></i>
+                      <span>{address}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case CardTheme.MONOGRAM:
+        return (
+          <div className="w-full h-full bg-white text-slate-900 shadow-2xl flex items-center px-10 gap-8 relative">
+            <div className="absolute inset-y-8 left-24 w-px bg-slate-200" aria-hidden="true"></div>
+            <div
+              className="flex-shrink-0 w-20 h-20 rounded-full border-4 flex items-center justify-center text-2xl font-bold"
+              style={{ borderColor: primaryColor, color: primaryColor, backgroundColor: '#f8fafc' }}
+            >
+              {initials}
+            </div>
+            <div className="flex flex-col gap-1">
+              <h1 className="text-3xl font-bold tracking-tight">{displayFullName}</h1>
+              <p className="text-sm uppercase tracking-[0.2em] font-semibold" style={{ color: primaryColor }}>{displayJobTitle}</p>
+              <div className="text-sm text-slate-600 space-y-1 mt-2">
+                {companyName && <div className="font-semibold text-slate-800">{companyName}</div>}
+                {email && <div>{email}</div>}
+                {phone && <div>{phone}</div>}
+              </div>
+            </div>
+            <div className="ml-auto text-right text-xs text-slate-500 max-w-[140px] italic">
+              {tagline || 'A concise statement about your expertise.'}
+            </div>
+          </div>
+        );
+
+      case CardTheme.NEON:
+        return (
+          <div className="w-full h-full bg-slate-950 text-white relative shadow-[0_10px_50px_rgba(15,23,42,0.55)] overflow-hidden p-8 flex flex-col">
+            <div
+              className="absolute inset-0 rounded"
+              style={{ boxShadow: `0 0 0 2px ${primaryColor}, 0 0 24px ${primaryColor}55, inset 0 0 24px ${primaryColor}55`, borderRadius: '0.5rem' }}
+              aria-hidden="true"
+            ></div>
+            <div className="relative z-10 flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Neon Identity</p>
+                <h1 className="text-3xl font-bold mt-2 mb-1">{displayFullName}</h1>
+                <p className="text-sm font-semibold" style={{ color: primaryColor }}>{displayJobTitle}</p>
+              </div>
+              <div className="text-right text-xs text-slate-400 space-y-1">
+                {companyName && <div className="font-semibold text-white">{companyName}</div>}
+                {website && <div>{website}</div>}
+              </div>
+            </div>
+            <div className="relative z-10 flex-grow flex items-center">
+              <div className="bg-slate-900/70 border border-slate-800 rounded px-4 py-3 text-sm font-mono text-slate-200 shadow-inner w-full">
+                {tagline ? `< ${tagline} />` : '<plug in your differentiator />'}
+              </div>
+            </div>
+            <div className="relative z-10 grid grid-cols-3 gap-3 text-xs text-slate-200">
+              {email && (
+                <div className="flex items-center gap-2 bg-slate-900/70 px-3 py-2 rounded border border-slate-800">
+                  <i className="fas fa-at text-[10px]" style={{ color: primaryColor }}></i>
+                  <span className="truncate">{email}</span>
+                </div>
+              )}
+              {phone && (
+                <div className="flex items-center gap-2 bg-slate-900/70 px-3 py-2 rounded border border-slate-800">
+                  <i className="fas fa-wave-square text-[10px]" style={{ color: primaryColor }}></i>
+                  <span>{phone}</span>
+                </div>
+              )}
+              {website && (
+                <div className="flex items-center gap-2 bg-slate-900/70 px-3 py-2 rounded border border-slate-800">
+                  <i className="fas fa-globe text-[10px]" style={{ color: primaryColor }}></i>
+                  <span className="truncate">{website}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+
+      case CardTheme.GRID:
+        return (
+          <div className="w-full h-full bg-white text-slate-900 shadow-2xl relative overflow-hidden border border-slate-200">
+            <div
+              className="absolute inset-0 opacity-50"
+              style={{
+                backgroundImage: `linear-gradient(to right, ${primaryColor}15 1px, transparent 1px), linear-gradient(to bottom, ${primaryColor}15 1px, transparent 1px)`,
+                backgroundSize: '22px 22px'
+              }}
+              aria-hidden="true"
+            ></div>
+            <div className="relative z-10 h-full p-8 flex flex-col justify-between">
+              <div className="flex items-start justify-between gap-6">
+                <div>
+                  <h1 className="text-3xl font-bold mb-1">{displayFullName}</h1>
+                  <p className="text-sm uppercase tracking-[0.2em] font-semibold" style={{ color: primaryColor }}>{displayJobTitle}</p>
+                </div>
+                <div className="flex flex-col items-end gap-2">
+                  <div className="px-3 py-1 rounded-full text-xs font-semibold text-white" style={{ backgroundColor: primaryColor }}>
+                    ID {initials}
+                  </div>
+                  {companyName && <div className="text-sm text-slate-600">{companyName}</div>}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 text-sm text-slate-700">
+                {email && (
+                  <div className="flex items-center gap-2">
+                    <i className="fas fa-envelope text-slate-400 w-4 text-center"></i>
+                    <span className="break-all">{email}</span>
+                  </div>
+                )}
+                {phone && (
+                  <div className="flex items-center gap-2">
+                    <i className="fas fa-phone text-slate-400 w-4 text-center"></i>
+                    <span>{phone}</span>
+                  </div>
+                )}
+                {website && (
+                  <div className="flex items-center gap-2">
+                    <i className="fas fa-globe text-slate-400 w-4 text-center"></i>
+                    <span>{website}</span>
+                  </div>
+                )}
+                {address && (
+                  <div className="flex items-center gap-2">
+                    <i className="fas fa-map-marker-alt text-slate-400 w-4 text-center"></i>
+                    <span>{address}</span>
+                  </div>
+                )}
+              </div>
+
+              {tagline && <div className="text-xs text-slate-500 italic mt-3 border-t border-slate-200 pt-2">{tagline}</div>}
+            </div>
           </div>
         );
 

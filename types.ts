@@ -7,6 +7,10 @@ export enum CardTheme {
   ELEGANT = 'ELEGANT',
   BOLD = 'BOLD',
   GEOMETRIC = 'GEOMETRIC',
+  HORIZON = 'HORIZON',
+  MONOGRAM = 'MONOGRAM',
+  NEON = 'NEON',
+  GRID = 'GRID',
 }
 
 export interface CardData {
