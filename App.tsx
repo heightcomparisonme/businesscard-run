@@ -331,7 +331,7 @@ const App: React.FC = () => {
 
               {/* Right Column: Preview */}
               <div className="lg:col-span-7 xl:col-span-8 flex flex-col gap-6">
-                <div className="lg:sticky lg:top-24 space-y-6">
+                <div className="space-y-6">
                   <div className="bg-slate-200/50 rounded-2xl border-2 border-dashed border-slate-300 p-8 flex items-center justify-center min-h-[400px] relative group overflow-hidden">
                      <div className="absolute inset-0 bg-grid-slate-200 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] pointer-events-none" aria-hidden="true"></div>
                      <div className="z-10 shadow-2xl rounded overflow-hidden">
